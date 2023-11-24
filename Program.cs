@@ -5,6 +5,8 @@ using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using WebApi.Helpers;
 
+var nuVersion = AppHelper.GetNuVersion();
+var nmApplication = AppHelper.GetNmApplication();
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 
@@ -27,8 +29,7 @@ builder.Services.AddSwaggerGen();
 #region Configura o Swagger
 builder.Services.AddSwaggerGen(o =>
 {
-    string nuVersion = "0.1";
-    string nmApplication = "WebApi";
+
 
     o.EnableAnnotations();
     o.SwaggerDoc(nuVersion, new OpenApiInfo { Title = nmApplication, Version = nuVersion });
@@ -75,9 +76,6 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI(s =>
 {
-
-    var nuVersion = "0.1";
-    var nmApplication = "WebApi";
 
     s.SwaggerEndpoint($"{nuVersion}/swagger.json", $"{nmApplication} {nuVersion}");
     s.DocumentTitle = "tglimatech - WebApi";
