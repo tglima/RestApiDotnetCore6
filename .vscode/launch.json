@@ -6,6 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
+            "justMyCode": false,
             "program": "${workspaceFolder}/bin/Debug/net6.0/webapi.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
