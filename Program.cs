@@ -4,6 +4,7 @@ using System.Reflection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using WebApi.Helpers;
+using WebApi.Services;
 
 var nuVersion = AppHelper.GetNuVersion();
 var nmApplication = AppHelper.GetNmApplication();
@@ -21,6 +22,7 @@ ServicePointManager.ServerCertificateValidationCallback +=
 
 
 builder.Services.AddControllers();
+builder.Services.AddScoped<LogService>();
 builder.Services.AddSingleton<DbSQLiteContext>();
 
 builder.Services.AddEndpointsApiExplorer();
