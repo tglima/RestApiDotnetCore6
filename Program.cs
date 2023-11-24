@@ -1,4 +1,5 @@
 using System.ComponentModel;
+using System.Net;
 using System.Reflection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
@@ -7,12 +8,21 @@ using WebApi.Helpers;
 var builder = WebApplication.CreateBuilder(args);
 var env = builder.Environment;
 
+#region Força utilizacao do TLS 1.2
+ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+ServicePointManager.ServerCertificateValidationCallback +=
+(se, cert, chain, sslerror) =>
+{
+    return true;
+};
+#endregion
+
+
 builder.Services.AddControllers();
 builder.Services.AddSingleton<DbSQLiteContext>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 #region Configura o Swagger
 builder.Services.AddSwaggerGen(o =>
