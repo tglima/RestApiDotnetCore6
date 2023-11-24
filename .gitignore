@@ -1,0 +1,71 @@
+# User-specific files
+*.rsuser
+*.suo
+*.user
+*.userosscache
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+.vs
+
+# .NET Core
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Rider
+.idea/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+# Mono Auto Generated Files
+mono_crash.*
+
+# .NET Core build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+[Ll]og/
+[Ll]ogs/
+
+# JetBrains Rider cache
+.sln.cache
+
+# Visual Studio Code packages
+bin
+.DS_Store
+.libs
+.so
+.so.[0-9]
+.a
+.pyc
+.pyo
+~$*
+*~
+
+# .NET Core build results
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+x64/
+x86/
+[Ll]og/
+[Ll]ogs/
