@@ -17,11 +17,9 @@
             "env": {
                 "ASPNETCORE_ENVIRONMENT": "Development"
             },
-        },
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach"
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            }
         }
     ]
 }
