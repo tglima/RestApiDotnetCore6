@@ -8,6 +8,10 @@ namespace WebApi.Helpers
     public class AppHelper
     {
 
+        public static string GetDateNow()
+        {
+            return DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff");
+        }
         public static string GetNuVersion()
         {
 
