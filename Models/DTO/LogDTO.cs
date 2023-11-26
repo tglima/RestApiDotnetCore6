@@ -11,6 +11,7 @@ namespace WebApi.Models.DTO
             this.DtStart = AppHelper.GetDateNow();
         }
 
+        public string ApiKey = string.Empty;
         public string DtStart { get; set; }
 
         public string DtFinish = string.Empty;
@@ -19,7 +20,7 @@ namespace WebApi.Models.DTO
 
         public string ResponseData = string.Empty;
 
-        public bool WasError { get; set; }
-        public List<ReturnDTO> Methods = new List<ReturnDTO>();
+        public int CodeStatus;
+        public List<ReturnDTO> Methods = new();
     }
 }
