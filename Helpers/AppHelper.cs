@@ -58,5 +58,12 @@ namespace WebApi.Helpers
             }
             return objJSON;
         }
+
+        public static int? ToNullableInt(string? value)
+        {
+            value = string.IsNullOrEmpty(value) ? string.Empty : value;
+            return (int.TryParse(value.Trim(), out int tempNumber) ?
+            tempNumber as int? : null);
+        }
     }
 }
