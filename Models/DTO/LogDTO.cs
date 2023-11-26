@@ -9,6 +9,7 @@ namespace WebApi.Models.DTO
         public LogDTO()
         {
             this.DtStart = AppHelper.GetDateNow();
+            this.CodeEvent = AppHelper.GenerateNuGuid();
         }
 
         public string ApiKey = string.Empty;
