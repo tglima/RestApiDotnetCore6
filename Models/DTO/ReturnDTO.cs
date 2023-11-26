@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Mvc;
 using WebApi.Models.API;
 
 namespace WebApi.Models.DTO
@@ -17,5 +18,13 @@ namespace WebApi.Models.DTO
         public string NmMethod = string.Empty;
         public List<string> Info = new();
         public List<ReturnDTO> Methods = new();
+
+        public static ActionResult ToActionResult(ReturnDTO returnDTO)
+        {
+            return new ObjectResult(returnDTO.Returnbject)
+            {
+                StatusCode = Convert.ToInt32(returnDTO.StatusCode)
+            };
+        }
     }
 }
