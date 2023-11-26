@@ -7,6 +7,12 @@ namespace WebApi.Models.API
 {
     public class DefRespFail : ApiBase
     {
+
+        public DefRespFail() { }
+        public DefRespFail(string Message)
+        {
+            this.Messages.Add(Message);
+        }
         public List<string> Messages = new();
     }
 }
