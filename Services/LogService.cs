@@ -4,7 +4,7 @@ namespace WebApi.Services
 {
     public class LogService
     {
-        private LogDTO LogDTO { get; set; }
+        public LogDTO LogDTO;
 
         public LogService()
         {
