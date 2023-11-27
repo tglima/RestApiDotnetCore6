@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text.Json.Nodes;
-using System.ComponentModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Serialization;
+using System.Text.Json.Nodes;
 using WebApi.Helpers;
 
 
@@ -14,6 +10,7 @@ namespace webapi.Controllers
     [Route("/")]
     public class HealthCheckController : ControllerBase
     {
+        [AllowAnonymous]
         [HttpGet("health-check")]
         public IActionResult Check()
         {

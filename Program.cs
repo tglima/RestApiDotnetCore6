@@ -4,6 +4,7 @@ using System.Reflection;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
 using WebApi.Helpers;
+using WebApi.Middlewares;
 using WebApi.Services;
 
 var nuVersion = AppHelper.GetNuVersion();
@@ -32,39 +33,23 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddSwaggerGen(o =>
 {
 
-
     o.EnableAnnotations();
     o.SwaggerDoc(nuVersion, new OpenApiInfo { Title = nmApplication, Version = nuVersion });
-    o.AddSecurityDefinition("API-KEY", new OpenApiSecurityScheme
+    o.AddSecurityDefinition(Constant.API_KEY, new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
         Description = "Chave de acesso individual disponibilizado para acessar a API",
-        Name = "API-KEY",
+        Name = Constant.API_KEY,
         Type = SecuritySchemeType.ApiKey,
         Scheme = "ApiKeyScheme"
     });
 
-    o.AddSecurityRequirement(new OpenApiSecurityRequirement
-    {
-        {
-            new OpenApiSecurityScheme
-            {
-                Reference = new OpenApiReference
-                {
-                    Type = ReferenceType.SecurityScheme,
-                    Id = "ApiKey"
-                },
-                In = ParameterLocation.Header
-            },
-            new List<string>()
-        }
-    });
+    o.OperationFilter<SwaggerAllowAnonymousOperationFilter>();
 
     o.CustomSchemaIds(x => x.GetCustomAttributes(false).OfType<DisplayNameAttribute>().FirstOrDefault()?.DisplayName ?? x.Name);
 
     var xmlPath = Path.Combine(AppContext.BaseDirectory, $"{Assembly.GetExecutingAssembly().GetName().Name}.xml");
     o.IncludeXmlComments(xmlPath);
-
 
 });
 
@@ -110,5 +95,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseApiKeyValidationMiddleware();
 
 app.Run();
