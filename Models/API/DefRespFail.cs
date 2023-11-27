@@ -1,18 +1,26 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Text.Json.Serialization;
 
 namespace WebApi.Models.API
 {
     public class DefRespFail : ApiBase
     {
 
-        public DefRespFail() { }
+        public DefRespFail()
+        {
+            this.Messages = new();
+        }
+
         public DefRespFail(string Message)
         {
-            this.Messages.Add(Message);
+            this.Messages = new()
+            {
+                Message
+            };
         }
-        public List<string> Messages = new();
+
+
+        [JsonPropertyName("messages")]
+        [JsonPropertyOrder(int.MaxValue)]
+        public List<string> Messages { get; set; }
     }
 }
