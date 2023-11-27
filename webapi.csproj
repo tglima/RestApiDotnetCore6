@@ -14,7 +14,10 @@
     <NoWarn>1701;1702;1591</NoWarn>
     <DocumentationFile>webapi.xml</DocumentationFile>
   </PropertyGroup>
-
+  <Target Name="SpicNSpan" AfterTargets="Clean">
+      <RemoveDir Directories="$(BaseOutputPath)" />
+      <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
+  </Target>
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.24" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.0" />
