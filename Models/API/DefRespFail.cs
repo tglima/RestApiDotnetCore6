@@ -10,8 +10,11 @@ namespace WebApi.Models.API
             this.Messages = new();
         }
 
-        public DefRespFail(string Message)
+        public DefRespFail(string Message, string? CodeEvent)
         {
+
+            this.CodeEvent = CodeEvent ?? string.Empty;
+
             this.Messages = new()
             {
                 Message
