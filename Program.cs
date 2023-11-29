@@ -23,9 +23,9 @@ ServicePointManager.ServerCertificateValidationCallback +=
 
 
 builder.Services.AddControllers();
+
 builder.Services.AddScoped<LogService>();
 builder.Services.AddSingleton<DbSQLiteContext>();
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -95,7 +95,5 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
-
-app.UseApiKeyValidationMiddleware();
 
 app.Run();
