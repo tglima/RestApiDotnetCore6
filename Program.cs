@@ -1,11 +1,11 @@
-using System.ComponentModel;
 using System.Net;
+using WebApi.Helpers;
+using WebApi.Services;
 using System.Reflection;
+using WebApi.Middlewares;
+using System.ComponentModel;
 using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerUI;
-using WebApi.Helpers;
-using WebApi.Middlewares;
-using WebApi.Services;
 
 var nuVersion = AppHelper.GetNuVersion();
 var nmApplication = AppHelper.GetNmApplication();
@@ -95,5 +95,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseApiHandlerMiddleware();
 
 app.Run();
