@@ -18,9 +18,10 @@ namespace WebApi.Services
         }
 
 
-        public void SaveLogError(LogErrorDTO logError)
+        public async Task SaveLogError(LogErrorDTO logError)
         {
             logError.CodeEvent = this.LogDTO.CodeEvent;
+            await this._dbSQLite.InsertLogError(logError);
         }
 
         public async Task SaveLog()
