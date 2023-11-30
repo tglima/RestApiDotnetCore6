@@ -4,7 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <Version>0.1.0</Version>
+    <Version>0.2.0</Version>
     <Copyright>Copyright © 2023</Copyright>
     <Company>tglimatech</Company>
     <Authors>tglima</Authors>
@@ -14,7 +14,10 @@
     <NoWarn>1701;1702;1591</NoWarn>
     <DocumentationFile>webapi.xml</DocumentationFile>
   </PropertyGroup>
-
+  <Target Name="SpicNSpan" AfterTargets="Clean">
+      <RemoveDir Directories="$(BaseOutputPath)" />
+      <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
+  </Target>
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.1.24" />
     <PackageReference Include="Microsoft.Data.Sqlite" Version="8.0.0" />

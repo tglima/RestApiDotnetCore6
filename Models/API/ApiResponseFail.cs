@@ -2,16 +2,19 @@ using System.Text.Json.Serialization;
 
 namespace WebApi.Models.API
 {
-    public class DefRespFail : ApiBase
+    public class ApiResponseFail : ApiBase
     {
 
-        public DefRespFail()
+        public ApiResponseFail()
         {
             this.Messages = new();
         }
 
-        public DefRespFail(string Message)
+        public ApiResponseFail(string Message, string? CodeEvent)
         {
+
+            this.CodeEvent = CodeEvent ?? string.Empty;
+
             this.Messages = new()
             {
                 Message

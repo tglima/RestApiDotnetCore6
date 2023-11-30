@@ -5,13 +5,16 @@ namespace WebApi.Models.DTO
 {
     public class LogErrorDTO : ApiBase
     {
+        public LogErrorDTO() { }
 
-        public LogErrorDTO()
+        public LogErrorDTO(Exception exception, string method)
         {
-            this.DtRegister = AppHelper.GetDateNow();
+            this.Method = method;
+            this.ExceptionMessage = exception.Message;
+            this.StackTrace = exception.StackTrace ?? string.Empty;
         }
 
-        public string DtRegister { get; set; }
+        public string DtRegister = AppHelper.GetDateNow();
         public string Method = string.Empty;
         public string ExceptionMessage = string.Empty;
         public string StackTrace = string.Empty;

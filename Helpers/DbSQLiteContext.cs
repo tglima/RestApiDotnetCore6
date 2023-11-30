@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-using System.Data;
 using Dapper;
+using System.Data;
+using WebApi.Models.DTO;
 using Microsoft.Data.Sqlite;
 
 namespace WebApi.Helpers
@@ -81,6 +77,45 @@ namespace WebApi.Helpers
                 await connection.ExecuteAsync(createIndexIdLogError);
                 await connection.ExecuteAsync(createIndexCodeEvent);
             }
+        }
+
+        public async Task InsertLog(LogDTO logDTO)
+        {
+            using var connection = CreateConnection();
+
+            var sqlInsert = @"INSERT INTO log_event
+                  (code_event, api_key, dt_start, dt_finish, request_data, response_data, code_status)
+                  VALUES (@CodeEvent, @ApiKey, @DtStart, @DtFinish, @RequestData, @ResponseData, @CodeStatus)";
+
+            await connection.ExecuteAsync(sqlInsert, new
+            {
+                logDTO.CodeEvent,
+                logDTO.ApiKey,
+                logDTO.DtStart,
+                logDTO.DtFinish,
+                logDTO.RequestData,
+                logDTO.ResponseData,
+                logDTO.CodeStatus
+            });
+        }
+
+
+        public async Task InsertLogError(LogErrorDTO logError)
+        {
+            using var connection = CreateConnection();
+
+            var sqlInsert = @"INSERT INTO log_error
+                  (code_event, dt_register, method, exception_message, stack_trace)
+                  VALUES (@CodeEvent, @DtRegister, @Method, @ExceptionMessage, @StackTrace)";
+
+            await connection.ExecuteAsync(sqlInsert, new
+            {
+                logError.CodeEvent,
+                logError.DtRegister,
+                logError.Method,
+                logError.ExceptionMessage,
+                logError.StackTrace
+            });
         }
     }
 }
