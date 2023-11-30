@@ -4,7 +4,7 @@ using System.Text.Json.Nodes;
 using WebApi.Helpers;
 
 
-namespace webapi.Controllers
+namespace WebApi.Controllers
 {
     [ApiController]
     [Route("/")]
