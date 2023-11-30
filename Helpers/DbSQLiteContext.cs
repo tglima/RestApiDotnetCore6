@@ -98,5 +98,24 @@ namespace WebApi.Helpers
                 logDTO.CodeStatus
             });
         }
+
+
+        public async Task InsertLogError(LogErrorDTO logError)
+        {
+            using var connection = CreateConnection();
+
+            var sqlInsert = @"INSERT INTO log_error
+                  (code_event, dt_register, method, exception_message, stack_trace)
+                  VALUES (@CodeEvent, @DtRegister, @Method, @ExceptionMessage, @StackTrace)";
+
+            await connection.ExecuteAsync(sqlInsert, new
+            {
+                logError.CodeEvent,
+                logError.DtRegister,
+                logError.Method,
+                logError.ExceptionMessage,
+                logError.StackTrace
+            });
+        }
     }
 }
