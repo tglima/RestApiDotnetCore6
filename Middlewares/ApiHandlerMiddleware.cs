@@ -72,7 +72,7 @@ namespace WebApi.Middlewares
             }
 
             logService.SetResponseData(context.Response, responseBody);
-            logService.SaveLog();
+            await logService.SaveLog();
         }
 
 
