@@ -1,10 +1,13 @@
 # TODO
 
-- v0.2
-    [ ] Criar endpoints /products
-    [ ] Salvar os logs no SQlite
+- v0.3
     [ ] Implementar testes
+    [ ] Criar endpoints /products
     [ ] Implementar GitHub actions para testes
+
+- v0.2
+    [X] Implementar middleware
+    [X] Salvar os logs no SQlite
 
 - v0.1
     [X] Criar projeto em .NetCore
