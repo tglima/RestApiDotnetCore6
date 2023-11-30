@@ -34,14 +34,31 @@ builder.Services.AddSwaggerGen(o =>
 {
 
     o.EnableAnnotations();
-    o.SwaggerDoc(nuVersion, new OpenApiInfo { Title = nmApplication, Version = nuVersion });
+    o.SwaggerDoc(nuVersion, new OpenApiInfo
+    {
+        Title = Constant.SwaggerTitle,
+        Description = Constant.SwaggerDescription,
+        Version = nuVersion,
+        Contact = new OpenApiContact
+        {
+            Name = Constant.SwaggerContactName,
+            Url = new Uri(Constant.SwaggerContactUrl)
+        },
+        License = new OpenApiLicense
+        {
+            Name = Constant.SwaggerLicenseName,
+            Url = new Uri(Constant.SwaggerLicenseUrl)
+        }
+
+    });
+
     o.AddSecurityDefinition(Constant.API_KEY, new OpenApiSecurityScheme
     {
         In = ParameterLocation.Header,
-        Description = "Chave de acesso individual disponibilizado para acessar a API",
+        Description = Constant.SwaggerSecurityDescription,
         Name = Constant.API_KEY,
         Type = SecuritySchemeType.ApiKey,
-        Scheme = "ApiKeyScheme"
+        Scheme = Constant.SwaggerSecurityScheme
     });
 
     o.OperationFilter<SwaggerAllowAnonymousOperationFilter>();
