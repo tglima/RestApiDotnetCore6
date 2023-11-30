@@ -18,6 +18,15 @@ namespace WebApi.Helpers
         public static readonly string MsgStatus404 = "Item não encontrado!";
         public static readonly string MsgStatus429 = "Limite de requisições ultrapassado, por favor, aguarde.";
         public static readonly string MsgStatus500 = "Erro interno no servidor!";
+        public static readonly string SwaggerTitle = "Rest API";
+        public static readonly string SwaggerDescription = "Swagger dos principais endpoints da API";
+        public static readonly string SwaggerContactName = "API Support - Website";
+        public static readonly string SwaggerContactUrl = "https://github.com/tglima/restapi-dotnetcore6";
+        public static readonly string SwaggerLicenseName = "MIT";
+        public static readonly string SwaggerLicenseUrl = "https://github.com/tglima/restapi-dotnetcore6/blob/main/LICENSE";
+        public static readonly string SwaggerSecurityDescription = "Chave de acesso individual disponibilizado para acessar a API";
+        public static readonly string SwaggerSecurityScheme = "ApiKeyScheme";
+
     }
 }
 
