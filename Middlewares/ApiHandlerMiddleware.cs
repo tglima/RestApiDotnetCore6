@@ -59,7 +59,7 @@ namespace WebApi.Middlewares
                 }
                 catch (Exception ex)
                 {
-                    logService.SaveLogError(new LogErrorDTO(ex, "Middleware.InvokeAsync"));
+                    await logService.SaveLogError(new LogErrorDTO(ex, "Middleware.InvokeAsync"));
                     var response = context.Response;
                     response.ContentType = Constant.APP_JSON; ;
                     var respError = new ApiResponseFail(Constant.MsgStatus500, logService.LogDTO.CodeEvent);
