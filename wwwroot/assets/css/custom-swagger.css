@@ -1,0 +1,8 @@
+.download-url-wrapper {
+    display: none !important;
+}
+
+.swagger-ui .info hgroup.main a {
+    font-size: 12px;
+    display: none;
+}
