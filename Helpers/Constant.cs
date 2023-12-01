@@ -19,6 +19,7 @@ namespace WebApi.Helpers
         public static readonly string MsgStatus429 = "Limite de requisições ultrapassado, por favor, aguarde.";
         public static readonly string MsgStatus500 = "Erro interno no servidor!";
         public static readonly string SwaggerTitle = "Rest API";
+        public static readonly string SwaggerTitlePage = "TgLimaTech - .Net Rest Api";
         public static readonly string SwaggerDescription = "Swagger dos principais endpoints da API";
         public static readonly string SwaggerContactName = "API Support";
         public static readonly string SwaggerContactUrl = "https://github.com/tglima/restapi-dotnetcore6";
