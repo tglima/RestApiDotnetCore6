@@ -27,6 +27,7 @@ namespace WebApi.Helpers
         public static readonly string SwaggerLicenseUrl = "https://github.com/tglima/restapi-dotnetcore6/blob/main/LICENSE";
         public static readonly string SwaggerSecurityDescription = "Chave de acesso individual disponibilizado para acessar a API";
         public static readonly string SwaggerSecurityScheme = "ApiKeyScheme";
+        public static readonly string JsonSwaggerFile = "/swagger.json";
         public static readonly string CssSwaggerFilePath = "/assets/css/custom-swagger.css";
 
     }
