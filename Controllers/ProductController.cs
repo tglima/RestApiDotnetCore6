@@ -7,6 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
 {
+    [ApiController]
     [Route("products")]
     public class ProductsController : ControllerBase
     {
