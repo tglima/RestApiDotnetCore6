@@ -74,6 +74,7 @@ builder.Services.AddSwaggerGen(o =>
 
 var app = builder.Build();
 
+app.UseApiHandlerMiddleware();
 // Configure the HTTP request pipeline.
 #region Carrega o Swagger
 app.UseSwagger();
@@ -123,6 +124,6 @@ app.UseHttpsRedirection();
 
 app.MapControllers();
 
-app.UseApiHandlerMiddleware();
+
 
 app.Run();
