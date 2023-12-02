@@ -1,8 +1,7 @@
-using Microsoft.AspNetCore.Authorization;
+using WebApi.Models.API;
 using Microsoft.AspNetCore.Mvc;
-using System.Text.Json.Nodes;
-using WebApi.Helpers;
-
+using Microsoft.AspNetCore.Authorization;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
 {
@@ -12,17 +11,12 @@ namespace WebApi.Controllers
     {
         [AllowAnonymous]
         [HttpGet("health-check")]
+        [Produces("application/json")]
+        [SwaggerOperation(Summary = "Obtém uma mensagem de sucesso")]
+        [SwaggerResponse(200, Type = typeof(HealthCheckResponse))]
         public IActionResult Check()
         {
-            var jsonResponse = new JsonObject
-            {
-                { "status", Constant.OK },
-                { "message", "API IS UP!" }
-            };
-
-            return new ObjectResult(jsonResponse) { StatusCode = StatusCodes.Status200OK };
+            return Ok(new HealthCheckResponse());
         }
     }
 }
-
-
