@@ -27,14 +27,13 @@ builder.Services.AddControllers();
 builder.Services.AddScoped<LogService>();
 builder.Services.AddSingleton<DbSQLiteContext>();
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 #region Configura o Swagger
 builder.Services.AddSwaggerGen(o =>
 {
 
     o.EnableAnnotations();
-    o.SwaggerDoc(nuVersion, new OpenApiInfo
+    o.SwaggerDoc(nmApplication, new OpenApiInfo
     {
         Title = Constant.SwaggerTitle,
         Description = Constant.SwaggerDescription,
@@ -78,13 +77,27 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 #region Carrega o Swagger
 app.UseSwagger();
+
+app.UseRouting();
+app.UseAuthorization();
+app.UseStaticFiles();
+
 app.UseSwaggerUI(s =>
 {
-
-    s.SwaggerEndpoint($"{nuVersion}/swagger.json", $"{nmApplication} {nuVersion}");
-    s.DocumentTitle = "tglimatech - WebApi";
+    s.SwaggerEndpoint(Constant.JsonSwaggerFile, Constant.SwaggerTitlePage);
+    s.RoutePrefix = "swagger";
+    s.DocumentTitle = Constant.SwaggerTitlePage;
     s.DocExpansion(DocExpansion.None);
+    s.InjectStylesheet(Constant.CssSwaggerFilePath);
 });
+
+app.UseEndpoints(endpoints =>
+     {
+         endpoints.MapGet(Constant.JsonSwaggerFile, async context =>
+         {
+             context.Response.Redirect($"/swagger/{nmApplication}{Constant.JsonSwaggerFile}");
+         });
+     });
 #endregion
 
 // Garante que o Database Sqlite e suas tabelas serão criados
@@ -97,19 +110,15 @@ app.UseSwaggerUI(s =>
 // Redireciona todos as requisições / para /swagger
 app.Use(async (context, next) =>
 {
-    if (context.Request.Path == "/")
+    if (context.Request.Path == "/" || context.Request.Path == "/index.html")
     {
         context.Response.Redirect("/swagger");
         return;
     }
-
     await next();
 });
 
-
 app.UseHttpsRedirection();
-
-app.UseAuthorization();
 
 app.MapControllers();
 
