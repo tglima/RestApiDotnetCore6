@@ -93,10 +93,11 @@ app.UseSwaggerUI(s =>
 
 app.UseEndpoints(endpoints =>
      {
-         endpoints.MapGet(Constant.JsonSwaggerFile, async context =>
-         {
-             context.Response.Redirect($"/swagger/{nmApplication}{Constant.JsonSwaggerFile}");
-         });
+         endpoints.MapGet(Constant.JsonSwaggerFile, context =>
+        {
+            context.Response.Redirect($"/swagger/{nmApplication}{Constant.JsonSwaggerFile}");
+            return Task.CompletedTask;
+        });
      });
 #endregion
 
