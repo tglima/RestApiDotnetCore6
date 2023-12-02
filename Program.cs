@@ -23,7 +23,7 @@ ServicePointManager.ServerCertificateValidationCallback +=
 
 
 builder.Services.AddControllers();
-
+builder.Services.AddTransient<ProductService>();
 builder.Services.AddScoped<LogService>();
 builder.Services.AddSingleton<DbSQLiteContext>();
 builder.Services.AddEndpointsApiExplorer();
