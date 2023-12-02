@@ -6,7 +6,7 @@
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "justMyCode": false,
+            "justMyCode": true,
             "program": "${workspaceFolder}/bin/Debug/net6.0/webapi.dll",
             "args": [],
             "cwd": "${workspaceFolder}",
@@ -19,8 +19,11 @@
                 "ASPNETCORE_ENVIRONMENT": "Development",
                 "API_KEY": "77be91d8-4bb1ba8e27a9"
             },
-            "sourceFileMap": {
-                "/Views": "${workspaceFolder}/Views"
+            "logging": {
+                "consoleUsageMessage": false,
+                "moduleLoad": false,
+                "exception": true,
+                "programOutput": true
             }
         }
     ]
