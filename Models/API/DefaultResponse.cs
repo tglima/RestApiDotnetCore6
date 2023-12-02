@@ -1,16 +1,17 @@
+using System.ComponentModel;
 using System.Text.Json.Serialization;
 
 namespace WebApi.Models.API
 {
-    public class ApiResponseFail : ApiBase
+    public class DefaultResponse : ApiBase
     {
 
-        public ApiResponseFail()
+        public DefaultResponse()
         {
             this.Messages = new();
         }
 
-        public ApiResponseFail(string Message, string? CodeEvent)
+        public DefaultResponse(string Message, string? CodeEvent)
         {
 
             this.CodeEvent = CodeEvent ?? string.Empty;

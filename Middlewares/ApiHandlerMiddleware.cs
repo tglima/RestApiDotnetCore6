@@ -62,7 +62,7 @@ namespace WebApi.Middlewares
                     await logService.SaveLogError(new LogErrorDTO(ex, "Middleware.InvokeAsync"));
                     var response = context.Response;
                     response.ContentType = Constant.APP_JSON; ;
-                    var respError = new ApiResponseFail(Constant.MsgStatus500, logService.LogDTO.CodeEvent);
+                    var respError = new DefaultResponse(Constant.MsgStatus500, logService.LogDTO.CodeEvent);
                     response.StatusCode = (int)StatusCodeApi.ERROR;
                     context.Response.ContentType = Constant.APP_JSON;
                     responseBody = AppHelper.ToJSON(respError);
@@ -108,7 +108,7 @@ namespace WebApi.Middlewares
 
 
             returnDTO.StatusCode = isValidApiKey ? StatusCodeApi.SUCCESS : StatusCodeApi.UNNAUTHORIZED;
-            returnDTO.Returnbject = isValidApiKey ? null : new ApiResponseFail(Constant.MsgStatus401, logDTO.CodeEvent);
+            returnDTO.Returnbject = isValidApiKey ? null : new DefaultResponse(Constant.MsgStatus401, logDTO.CodeEvent);
 
             return returnDTO;
         }
