@@ -4,7 +4,9 @@ using WebApi.Services;
 using System.Reflection;
 using WebApi.Middlewares;
 using System.ComponentModel;
+using WebApi.Models.Examples;
 using Microsoft.OpenApi.Models;
+using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.SwaggerUI;
 
 var nuVersion = AppHelper.GetNuVersion();
@@ -27,10 +29,17 @@ builder.Services.AddScoped<LogService>();
 builder.Services.AddSingleton<DbSQLiteContext>();
 builder.Services.AddEndpointsApiExplorer();
 
+builder.Services.AddSwaggerExamplesFromAssemblyOf<InvalidRequestExample>();
+builder.Services.AddSwaggerExamplesFromAssemblyOf<AuthFailedExample>();
+builder.Services.AddSwaggerExamplesFromAssemblyOf<NotFoundExample>();
+builder.Services.AddSwaggerExamplesFromAssemblyOf<ServerErrorExample>();
+builder.Services.AddSwaggerExamplesFromAssemblyOf<ProductExample>();
+builder.Services.AddSwaggerExamplesFromAssemblyOf<ArrayProductExample>();
+
 #region Configura o Swagger
 builder.Services.AddSwaggerGen(o =>
 {
-
+    o.ExampleFilters();
     o.EnableAnnotations();
     o.SwaggerDoc(nmApplication, new OpenApiInfo
     {
