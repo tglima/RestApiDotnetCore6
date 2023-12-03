@@ -1,8 +1,8 @@
-using Microsoft.AspNetCore.Authorization;
-using WebApi.Models.API;
-using WebApi.Models.DTO;
 using WebApi.Helpers;
 using WebApi.Services;
+using WebApi.Models.API;
+using WebApi.Models.DTO;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebApi.Middlewares
 {
@@ -45,17 +45,30 @@ namespace WebApi.Middlewares
             else
             {
 
-                // A partir deste ponto, seria após a execução do controller
+
                 try
                 {
-                    using var memoryStream = new MemoryStream();
-                    var originalBody = context.Response.Body;
-                    context.Response.Body = memoryStream;
 
-                    await _next(context);
+                    var response = context.Response;
+                    var originalBody = response.Body;
 
-                    memoryStream.Seek(0, SeekOrigin.Begin);
-                    responseBody = new StreamReader(memoryStream).ReadToEnd();
+#pragma warning disable IDE0063 // Usar a instrução 'using' simples
+                    using (var newBody = new MemoryStream())
+                    {
+                        response.Body = newBody;
+
+                        await _next(context);
+
+                        // A partir deste ponto, seria após a execução do controller
+                        newBody.Seek(0, SeekOrigin.Begin);
+                        responseBody = await new StreamReader(newBody).ReadToEndAsync();
+
+                        // Restaurar o corpo original da resposta
+                        newBody.Seek(0, SeekOrigin.Begin);
+                        await newBody.CopyToAsync(originalBody);
+                        response.Body = originalBody;
+                    }
+#pragma warning restore IDE0063 // Usar a instrução 'using' simples
                 }
                 catch (Exception ex)
                 {
