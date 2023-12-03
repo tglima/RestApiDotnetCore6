@@ -10,7 +10,6 @@ using Swashbuckle.AspNetCore.SwaggerUI;
 var nuVersion = AppHelper.GetNuVersion();
 var nmApplication = AppHelper.GetNmApplication();
 var builder = WebApplication.CreateBuilder(args);
-var env = builder.Environment;
 
 #region Força utilizacao do TLS 1.2
 ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
@@ -74,56 +73,38 @@ builder.Services.AddSwaggerGen(o =>
 
 var app = builder.Build();
 
-app.UseApiHandlerMiddleware();
-// Configure the HTTP request pipeline.
-#region Carrega o Swagger
-app.UseSwagger();
+#region Carrega tabelas do SQLite
+{
+    using var scope = app.Services.CreateScope();
+    var context = scope.ServiceProvider.GetRequiredService<DbSQLiteContext>();
+    await context.Init();
+}
+#endregion
 
-app.UseRouting();
-app.UseAuthorization();
+
+#region Carrega o Swagger
+
+//Adicionado para permitir carregar o css personalizado
 app.UseStaticFiles();
 
+app.UseSwagger();
 app.UseSwaggerUI(s =>
 {
-    s.SwaggerEndpoint(Constant.JsonSwaggerFile, Constant.SwaggerTitlePage);
+    s.SwaggerEndpoint($"{nmApplication}{Constant.JsonSwaggerFile}", Constant.SwaggerTitlePage);
     s.RoutePrefix = "swagger";
     s.DocumentTitle = Constant.SwaggerTitlePage;
     s.DocExpansion(DocExpansion.None);
     s.InjectStylesheet(Constant.CssSwaggerFilePath);
 });
 
-app.UseEndpoints(endpoints =>
-     {
-         endpoints.MapGet(Constant.JsonSwaggerFile, context =>
-        {
-            context.Response.Redirect($"/swagger/{nmApplication}{Constant.JsonSwaggerFile}");
-            return Task.CompletedTask;
-        });
-     });
 #endregion
-
-// Garante que o Database Sqlite e suas tabelas serão criados
-{
-    using var scope = app.Services.CreateScope();
-    var context = scope.ServiceProvider.GetRequiredService<DbSQLiteContext>();
-    await context.Init();
-}
-
-// Redireciona todos as requisições / para /swagger
-app.Use(async (context, next) =>
-{
-    if (context.Request.Path == "/" || context.Request.Path == "/index.html")
-    {
-        context.Response.Redirect("/swagger");
-        return;
-    }
-    await next();
-});
 
 app.UseHttpsRedirection();
 
+app.UseAuthorization();
 app.MapControllers();
 
+app.UseApiHandlerMiddleware();
 
 
 app.Run();
