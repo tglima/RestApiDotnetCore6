@@ -36,33 +36,4 @@ namespace WebApi.API
 
         public List<Product> Products { get; set; }
     }
-
-
-    public class ProductExample
-    {
-        public Product GetExamples()
-        {
-            return new Product()
-            {
-                IdProduct = 1,
-                NmProduct = "Basic",
-                VlMonthPrice = 14.99,
-                NmResolution = "Good",
-                QtSimultaneousScreens = 1
-            };
-        }
-    }
-
-    public class ArrayProductExample
-    {
-        public ArrayProduct GetExamples()
-        {
-            var arrayProduct = new ArrayProduct();
-            var productExample = new ProductExample();
-            arrayProduct.Products.Add(productExample.GetExamples());
-            arrayProduct.Products.Add(productExample.GetExamples());
-            arrayProduct.Products.Add(productExample.GetExamples());
-            return arrayProduct;
-        }
-    }
 }
