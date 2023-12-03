@@ -1,7 +1,7 @@
-using WebApi.API;
 using WebApi.Helpers;
 using WebApi.Models.API;
 using WebApi.Models.DTO;
+using WebApi.Models.Examples;
 
 namespace WebApi.Services
 {
