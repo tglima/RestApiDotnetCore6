@@ -2,7 +2,9 @@ using WebApi.API;
 using WebApi.Services;
 using WebApi.Models.API;
 using WebApi.Models.DTO;
+using WebApi.Models.Examples;
 using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Filters;
 using Swashbuckle.AspNetCore.Annotations;
 
 namespace WebApi.Controllers
@@ -26,6 +28,10 @@ namespace WebApi.Controllers
         [SwaggerResponse(400, Type = typeof(DefaultResponse))]
         [SwaggerResponse(401, Type = typeof(DefaultResponse))]
         [SwaggerResponse(500, Type = typeof(DefaultResponse))]
+        [SwaggerResponseExample(200, typeof(ArrayProductExample))]
+        [SwaggerResponseExample(400, typeof(InvalidRequestExample))]
+        [SwaggerResponseExample(401, typeof(AuthFailedExample))]
+        [SwaggerResponseExample(500, typeof(ServerErrorExample))]
         [HttpGet("find")]
         public IActionResult GetProducts()
         {
@@ -39,6 +45,10 @@ namespace WebApi.Controllers
         [SwaggerResponse(400, Type = typeof(DefaultResponse))]
         [SwaggerResponse(401, Type = typeof(DefaultResponse))]
         [SwaggerResponse(500, Type = typeof(DefaultResponse))]
+        [SwaggerResponseExample(200, typeof(ProductExample))]
+        [SwaggerResponseExample(400, typeof(InvalidRequestExample))]
+        [SwaggerResponseExample(401, typeof(AuthFailedExample))]
+        [SwaggerResponseExample(500, typeof(ServerErrorExample))]
         [HttpGet("find/{id}")]
         public IActionResult GetProductById(string id)
         {
