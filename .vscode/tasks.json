@@ -24,6 +24,28 @@
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "release",
+            "dependsOrder": "sequence",
+            "dependsOn": "prebuild",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "publish",
+                "-c",
+                "Release",
+                "${workspaceFolder}/WebApi/SlnRestapiDotnetCore6.sln"
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "clean",
+            "type": "dotnet",
+            "task": "clean",
+            "problemMatcher": [
+                "$msCompile"
+            ]
         }
     ]
 }
