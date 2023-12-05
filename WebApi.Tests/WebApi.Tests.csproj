@@ -20,5 +20,8 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WebApi\webapi.csproj" />
+  </ItemGroup>
 
 </Project>
