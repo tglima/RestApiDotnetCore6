@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "clean",
-                "${workspaceFolder}/WebApi/SlnRestapiDotnetCore6.sln"
+                "${workspaceFolder}/SlnRestapiDotnetCore6.sln"
             ],
             "problemMatcher": "$msCompile"
         },
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/WebApi/SlnRestapiDotnetCore6.sln",
+                "${workspaceFolder}/SlnRestapiDotnetCore6.sln",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary;ForceNoAlign"
             ],
@@ -35,7 +35,7 @@
                 "publish",
                 "-c",
                 "Release",
-                "${workspaceFolder}/WebApi/SlnRestapiDotnetCore6.sln"
+                "${workspaceFolder}/SlnRestapiDotnetCore6.sln"
             ],
             "problemMatcher": "$msCompile"
         },
