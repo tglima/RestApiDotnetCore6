@@ -65,11 +65,11 @@ namespace WebApi
 
                 });
 
-                o.AddSecurityDefinition(Constant.API_KEY, new OpenApiSecurityScheme
+                o.AddSecurityDefinition(Constant.API_KEY_HEADER, new OpenApiSecurityScheme
                 {
                     In = ParameterLocation.Header,
                     Description = Constant.SwaggerSecurityDescription,
-                    Name = Constant.API_KEY,
+                    Name = Constant.API_KEY_HEADER,
                     Type = SecuritySchemeType.ApiKey,
                     Scheme = Constant.SwaggerSecurityScheme
                 });
