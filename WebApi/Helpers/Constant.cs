@@ -11,6 +11,7 @@ namespace WebApi.Helpers
     public class Constant
     {
         public static readonly string API_KEY_HEADER = "API-KEY";
+        public static readonly string API_KEY = "API_KEY";
         public static readonly string APP_JSON = "application/json";
         public static readonly string OK = "OK";
         public static readonly string MsgStatus400 = "Ocorreu uma falha/erro na sua requisição. Reveja os dados enviados e tente novamente!";
