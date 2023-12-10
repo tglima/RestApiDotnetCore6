@@ -32,8 +32,11 @@ namespace WebApi.Tests.Controllers
 
             Assert.NotNull(result);
 
-            var healthCheckResponse = Assert.IsType<HealthCheckResponse>(result.Value);
-            Assert.Equal(Constant.OK, healthCheckResponse.Status);
+            if (result is not null)
+            {
+                var healthCheckResponse = Assert.IsType<HealthCheckResponse>(result.Value);
+                Assert.Equal(Constant.OK, healthCheckResponse.Status);
+            }
         }
     }
 }
