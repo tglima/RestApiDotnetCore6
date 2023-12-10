@@ -1,0 +1,38 @@
+name: Verify pull request
+
+on:
+  pull_request:
+    branches:
+      - main
+env:
+  DOTNET_VERSION: 6
+
+jobs:
+  build_and_test:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Set up .NET Core
+        run: |
+          echo "##vso[task.setvariable variable=dotnet_path;isoutput=true]$(DOTNET_VERSION)"
+          echo "##vso[task.setvariable variable=dotnet_sdk_path;isoutput=true]$(DOTNET_VERSION)"
+          echo "##vso[task.setvariable variable=dotnet_pack_path;isoutput=true]$(DOTNET_VERSION)"
+          dotnet --version
+
+      - name: Install dependencies
+        run: |
+          dotnet restore
+
+      - name: Build and run tests
+        run: |
+          dotnet test
+          if [ $? -eq 0 ]; then
+            echo "Testes bem-sucedidos!"
+          else
+            echo "Testes falharam!"
+          fi
