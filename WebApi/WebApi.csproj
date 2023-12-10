@@ -12,7 +12,7 @@
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;1591</NoWarn>
-    <DocumentationFile>webapi.xml</DocumentationFile>
+    <DocumentationFile>WebApi.xml</DocumentationFile>
   </PropertyGroup>
   <Target Name="SpicNSpan" AfterTargets="Clean">
       <RemoveDir Directories="$(BaseOutputPath)" />

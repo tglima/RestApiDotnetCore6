@@ -7,7 +7,7 @@
             "request": "launch",
             "preLaunchTask": "build",
             "justMyCode": true,
-            "program": "${workspaceFolder}/WebApi/bin/Debug/net6.0/webapi.dll",
+            "program": "${workspaceFolder}/WebApi/bin/Debug/net6.0/WebApi.dll",
             "args": [],
             "cwd": "${workspaceFolder}/WebApi",
             "stopAtEntry": false,
