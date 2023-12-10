@@ -8,6 +8,15 @@
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
+  <Target Name="SpicNSpan" AfterTargets="Clean">
+      <RemoveDir Directories="$(BaseOutputPath)" />
+      <RemoveDir Directories="$(BaseIntermediateOutputPath)" />
+  </Target>
+
+  <Target Name="CreateDataDirectory" AfterTargets="Build">
+    <MakeDir Directories="$(OutputPath)Data" />
+  </Target>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Testing" Version="6.0.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.1.0" />
