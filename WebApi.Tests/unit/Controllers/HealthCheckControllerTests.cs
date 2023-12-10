@@ -1,12 +1,8 @@
 using Xunit;
-using System;
-using System.Linq;
 using WebApi.Helpers;
 using WebApi.Models.API;
 using WebApi.Controllers;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 
 namespace WebApi.Tests.Controllers
 {
