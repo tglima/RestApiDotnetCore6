@@ -46,6 +46,15 @@
             "problemMatcher": [
                 "$msCompile"
             ]
+        },
+        {
+            "label": "Gerar relatório de cobertura",
+            "type": "shell",
+            "command": "dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=cobertura /p:CoverletOutput=${workspaceFolder}/WebApi/CoverageReport/coverage.xml && reportgenerator -reports:${workspaceFolder}/WebApi.Tests/CoverageReport/coverage.xml -targetdir:${workspaceFolder}/WebApi.Tests/CoverageReport -reporttypes:HTML --force",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
         }
     ]
 }
