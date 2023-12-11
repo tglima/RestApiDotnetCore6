@@ -4,6 +4,9 @@ on:
   pull_request:
     branches:
       - main
+  push:
+    branches:
+      - v0.3
 env:
   DOTNET_VERSION: 6
 
