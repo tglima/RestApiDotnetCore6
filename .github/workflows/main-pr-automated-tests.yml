@@ -31,6 +31,18 @@ jobs:
         run: |
           dotnet restore
 
+      - name: Calculate code coverage
+        run: |
+          coverage=$(dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover | grep "Total" | awk '{print substr($NF, 1, length($NF)-1)}')
+
+          # Check if coverage is at least 70%
+          if (( $(echo "$coverage >= 70" | bc -l) )); then
+            echo "Cobertura mínima de 70% atingida. Executando testes..."
+          else
+            echo "Cobertura de código insuficiente: $coverage%. Testes não serão executados."
+            exit 1
+          fi
+
       - name: Build and run tests
         run: |
           dotnet test
