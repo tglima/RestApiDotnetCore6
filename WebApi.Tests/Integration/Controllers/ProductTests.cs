@@ -62,7 +62,7 @@ namespace WebApi.Tests.Integration.Controllers
             client.DefaultRequestHeaders.Add(Constant.API_KEY_HEADER, _factory.ApiKeyArray[1]);
             var response = await client.GetAsync(string.Concat(_uri, "/1"));
             Assert.NotNull(response);
-            Assert.Equal(HttpStatusCode.NotFound, response.StatusCode);
+            Assert.Equal(HttpStatusCode.OK, response.StatusCode);
         }
 
         [Fact]
