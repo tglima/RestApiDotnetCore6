@@ -69,3 +69,7 @@ x64/
 x86/
 [Ll]og/
 [Ll]ogs/
+
+# Report Tests
+CoverageReport
+coverage.cobertura.xml

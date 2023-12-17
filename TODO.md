@@ -1,9 +1,9 @@
 # TODO
 
 - v0.3
-    [ ] Implementar testes
-    [ ] Criar endpoints /products
-    [ ] Implementar GitHub actions para testes
+    [X] Implementar testes
+    [X] Criar endpoints /products
+    [X] Implementar GitHub actions para testes
 
 - v0.2
     [X] Implementar middleware

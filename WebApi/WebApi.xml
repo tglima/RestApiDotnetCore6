@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>webapi</name>
+        <name>WebApi</name>
     </assembly>
     <members>
         <member name="P:WebApi.Models.API.ApiBase.CodeEvent">

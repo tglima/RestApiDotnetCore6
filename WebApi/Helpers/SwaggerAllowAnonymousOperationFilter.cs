@@ -22,7 +22,7 @@ namespace WebApi.Helpers
                             Reference = new OpenApiReference
                             {
                                 Type = ReferenceType.SecurityScheme,
-                                Id = Constant.API_KEY
+                                Id = Constant.API_KEY_HEADER
                             },
                             In = ParameterLocation.Header
                         },

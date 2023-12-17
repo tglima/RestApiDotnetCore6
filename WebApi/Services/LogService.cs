@@ -50,7 +50,7 @@ namespace WebApi.Services
             };
 
 
-            this.LogDTO.ApiKey = context.Request.Headers[Constant.API_KEY].ToString() ?? string.Empty;
+            this.LogDTO.ApiKey = context.Request.Headers[Constant.API_KEY_HEADER].ToString() ?? string.Empty;
 
             //Utiliza o Regex.Unescape para converter caracteres unicode em utf8
             this.LogDTO.RequestData = Regex.Unescape(JsonSerializer.Serialize(requestData));
