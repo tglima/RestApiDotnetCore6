@@ -1,5 +1,10 @@
 # TODO
 
+- v0.4
+    [ ] Utilizar o PostgreSQL
+    [ ] Implementar mocks para realizar os testes
+    [ ] Ajustar o GitHub actions para análisar os PRs
+
 - v0.3
     [X] Implementar testes
     [X] Criar endpoints /products
