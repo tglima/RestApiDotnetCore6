@@ -9,6 +9,7 @@ on:
       - v0.3
 env:
   DOTNET_VERSION: 6
+  COVERAGE_RESULT: 0
 
 jobs:
   build_and_test:
@@ -31,23 +32,34 @@ jobs:
         run: |
           dotnet restore
 
-      - name: Calculate code coverage
+      - name: Run tests
         run: |
-          coverage=$(dotnet test /p:CollectCoverage=true /p:CoverletOutputFormat=opencover | grep "Total" | awk '{print substr($NF, 1, length($NF)-1)}')
-
-          # Check if coverage is at least 70%
-          if (( $(echo "$coverage >= 70" | bc -l) )); then
-            echo "Cobertura mínima de 70% atingida. Executando testes..."
+          dotnet test /p:CollectCoverage=true /p:CoverletOutput=../  /p:CoverletOutputFormat=cobertura
+          if [ $? -eq 0 ]; then
+              echo "Testes bem-sucedidos!"
           else
-            echo "Cobertura de código insuficiente: $coverage%. Testes não serão executados."
-            exit 1
+              echo "Testes falharam!"
+              exit 1
           fi
 
-      - name: Build and run tests
+      - name: Get coverage %
         run: |
-          dotnet test
-          if [ $? -eq 0 ]; then
-            echo "Testes bem-sucedidos!"
+          coverage=$(grep -m 1 -oP '(?<=line-rate=")[^"]+' coverage.cobertura.xml)
+          echo "Cobertura de código provisória: $coverage%"
+          LC_NUMERIC="C"
+          coverage=$(echo "$coverage * 100" | bc)
+          coverage=$(printf "%.2f" $coverage)
+          echo "Cobertura de código final: $coverage%"
+          echo "COVERAGE_RESULT=$coverage" >> $GITHUB_ENV
+
+      - name: Check code coverage
+        run: |
+          LC_NUMERIC="C"
+          coverage=${{ env.COVERAGE_RESULT }}
+          # Check if coverage is at least 70%
+          if (( $(echo "$coverage >= 70" | bc -l) )); then
+              echo "Cobertura de código OK: $coverage%."
           else
-            echo "Testes falharam!"
+              echo "Cobertura de código insuficiente: $coverage%."
+              exit 1
           fi
